@@ -6,8 +6,38 @@ function App() {
   //ITERATION 1
   const [contactList, setContactList] = useState(data.slice(0, 5));
 
+  //ITERATION 3
+
+  const addContact = () => {
+    const randomContact = Math.floor(Math.random() * data.length);
+    const newRandomContact = data[randomContact];
+    const newContactList = [...contactList];
+    newContactList.push(newRandomContact);
+    setContactList(newContactList);
+  };
+
+  //ITERATION 4
+  const sortByName = () => {
+    const name = [...contactList].sort((a, b) => (a.name > b.name ? 1 : -1));
+    setContactList(name);
+  };
+
+  const sortByPopularity = () => {
+    const popularity = [...contactList].sort(
+      (a, b) => b.popularity - a.popularity
+    );
+    setContactList(popularity);
+  };
+
   return (
     <div className="App">
+      <h1>Iron Contacts</h1>
+
+      {/* Iteration 3 */}
+      <button onClick={() => addContact()}>Add Random Contact</button>
+      {/* Iteration 4 */}
+      <button onClick={() => sortByName()}>Sort by name</button>
+      <button onClick={() => sortByPopularity()}>Sort by popularity</button>
       <table className="table">
         <tr>
           <th>
